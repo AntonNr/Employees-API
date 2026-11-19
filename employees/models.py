@@ -22,7 +22,7 @@ class Employee(models.Model):
         return f'{self.second_name} {self.first_name}'
 
 class Salary(models.Model):
-    employee = models.ForeignKey(
+    employee = models.OneToOneField(
         Employee, 
         related_name='salary', 
         on_delete=models.CASCADE
