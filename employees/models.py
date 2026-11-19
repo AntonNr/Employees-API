@@ -23,7 +23,7 @@ class Employee(models.Model):
 class Salary(models.Model):
     employee = models.ForeignKey(
         Employee, 
-        related_name='salaries', 
+        related_name='salary', 
         on_delete=models.CASCADE
     )
     salary = models.DecimalField(
