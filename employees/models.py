@@ -10,6 +10,7 @@ class Employee(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        ordering = ['id']
         constraints = [
             models.CheckConstraint(
                 condition=models.Q(age__gte=MIN_AGE),
@@ -33,6 +34,7 @@ class Salary(models.Model):
     )
 
     class Meta:
+        ordering = ['id']
         constraints = [
             models.CheckConstraint(
                 condition=models.Q(salary__gte=0),
@@ -50,6 +52,9 @@ class Department(models.Model):
         on_delete=models.CASCADE
     )
     name = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ['id']
 
     def __str__(self):
         return f'{self.name} ({self.employee})'
