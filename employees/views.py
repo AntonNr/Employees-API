@@ -11,10 +11,10 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
 class SalaryViewSet(viewsets.ModelViewSet):
     serializer_class = SalarySerializer
-    queryset = Salary.objects.select_related('employee')
+    queryset = Salary.objects.all()
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     serializer_class = DepartmentSerializer
-    queryset = Department.objects.select_related('employee')
+    queryset = Department.objects.all()
 
 
