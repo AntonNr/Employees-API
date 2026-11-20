@@ -1,11 +1,12 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MinValueValidator
+from .validators import validate_not_only_digits
 
 MIN_AGE = 14
 
 class Employee(models.Model):
-    first_name = models.CharField(max_length=100)
-    second_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100, validators=[validate_not_only_digits])
+    second_name = models.CharField(max_length=100, validators=[validate_not_only_digits])
     age = models.PositiveSmallIntegerField(validators=[MinValueValidator(MIN_AGE)])
     create_date = models.DateTimeField(auto_now_add=True)
 
@@ -51,7 +52,7 @@ class Department(models.Model):
         related_name='department', 
         on_delete=models.CASCADE
     )
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, validators=[validate_not_only_digits])
 
     class Meta:
         ordering = ['id']
