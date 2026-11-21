@@ -139,3 +139,10 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# Rest Framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'employees.pagination.CustomPagination',
+    'PAGE_SIZE': 100
+}
