@@ -1,5 +1,4 @@
 from django.core.exceptions import ValidationError
-from decimal import Decimal
 
 def validate_not_only_digits(value: str):
     if value.isdigit():

@@ -11,6 +11,7 @@ class Employee(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        db_table='employees'
         ordering = ['id']
         constraints = [
             models.CheckConstraint(
@@ -35,6 +36,7 @@ class Salary(models.Model):
     )
 
     class Meta:
+        db_table='salaries'
         ordering = ['id']
         constraints = [
             models.CheckConstraint(
@@ -56,6 +58,7 @@ class Department(models.Model):
     name = models.CharField(max_length=100)
 
     class Meta:
+        db_table='departments'
         ordering = ['id']
 
     def __str__(self):
