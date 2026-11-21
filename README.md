@@ -48,10 +48,20 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### 3. Создание переменных окружения
+
+1. Создайте файл .env и скопируйте в него содержимое файла .env.example.
+2. Заполните созданный файл .env своими данными.
+3. В виртуальном окружении (venv) запустите команду: 
+
+```bash
+set -a; source .env; set +a
+```
+
 ### 3. База данных
 
 1. В PostgreSQL создать пустую базу данных `employees_db`.
-2. В файле `core/settings.py`, в разделе `DATABASES`, заменить параметры на свои: `NAME`, `USER`, `PASSWORD`, `HOST`, `PORT`.
+2. В файле `.env`, заменить параметры начинающиеся с DB_ на свои: `NAME`, `USER`, `PASSWORD`, `HOST`, `PORT`.
 
 Время хранится в UTC, отображается по Минску.
 
