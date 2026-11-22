@@ -8,6 +8,9 @@ class Employee(models.Model):
     first_name = models.CharField(max_length=100, validators=[validate_not_only_digits, validate_has_letter])
     second_name = models.CharField(max_length=100, validators=[validate_not_only_digits, validate_has_letter])
     age = models.PositiveSmallIntegerField(validators=[MinValueValidator(MIN_AGE)])
+    departments = models.ManyToManyField(
+        'Department',
+    )
     create_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -25,8 +28,7 @@ class Employee(models.Model):
 
 class Salary(models.Model):
     employee = models.OneToOneField(
-        Employee, 
-        related_name='salary', 
+        'Employee', 
         on_delete=models.CASCADE
     )
     salary = models.DecimalField(
@@ -50,16 +52,11 @@ class Salary(models.Model):
 
 
 class Department(models.Model):
-    employee = models.OneToOneField(
-        Employee,
-        related_name='department', 
-        on_delete=models.CASCADE
-    )
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     class Meta:
         db_table='departments'
         ordering = ['id']
 
     def __str__(self):
-        return f'{self.name} ({self.employee})'
+        return f'{self.name}'

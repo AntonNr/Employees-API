@@ -4,8 +4,8 @@ from .models import Employee, Salary, Department
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ['id', 'first_name', 'second_name', 'age', 'create_date']
-        read_only_fields = ['id', 'create_date']
+        fields = ['id', 'first_name', 'second_name', 'age', 'departments', 'create_date']
+        read_only_fields = ['id','create_date']
 
 class SalarySerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,5 +16,5 @@ class SalarySerializer(serializers.ModelSerializer):
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
-        fields = ['id', 'employee', 'name']
+        fields = ['id', 'name']
         read_only_fields = ['id']
