@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.db.models.functions import Now
 from .validators import validate_not_only_digits, validate_has_letter
 
 MIN_AGE = 14
@@ -12,7 +13,7 @@ class Employee(models.Model):
         'Department',
         blank=True,
     )
-    create_date = models.DateTimeField(auto_now_add=True)
+    create_date = models.DateTimeField(db_default=Now())
 
     class Meta:
         db_table='employees'
