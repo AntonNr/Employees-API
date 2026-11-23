@@ -13,23 +13,23 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        if self.action == 'departments':
+        if self.action == "departments":
             queryset = queryset.annotate(
                 department_names=StringAgg(
-                    'departments__name',
-                    Value(', '),
+                    "departments__name",
+                    Value(", "),
                     distinct=True,
-                    order_by='departments__name',
+                    order_by="departments__name",
                 )
             )
         return queryset
 
-    @action(detail=True, methods=['get'], url_path='departments')
+    @action(detail=True, methods=["get"], url_path="departments")
     def departments(self, request, pk=None):
         employee = self.get_object()
 
         return Response({
-            'departments': employee.department_names or '',
+            "departments": employee.department_names or '',
         })
 
 

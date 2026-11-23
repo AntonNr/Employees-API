@@ -10,27 +10,27 @@ class Employee(models.Model):
     second_name = models.CharField(max_length=100, validators=[validate_not_only_digits, validate_has_letter])
     age = models.PositiveSmallIntegerField(validators=[MinValueValidator(MIN_AGE)])
     departments = models.ManyToManyField(
-        'Department',
+        "Department",
         blank=True,
     )
     create_date = models.DateTimeField(db_default=Now())
 
     class Meta:
-        db_table='employees'
-        ordering = ['id']
+        db_table="employees"
+        ordering = ["id"]
         constraints = [
             models.CheckConstraint(
                 condition=models.Q(age__gte=MIN_AGE),
-                name='employee_age_range'
+                name="employee_age_range"
             ),
         ]
 
     def __str__(self):
-        return f'{self.second_name} {self.first_name}'
+        return f"{self.second_name} {self.first_name}"
 
 class Salary(models.Model):
     employee = models.OneToOneField(
-        'Employee', 
+        "Employee", 
         on_delete=models.CASCADE
     )
     salary = models.DecimalField(
@@ -40,25 +40,25 @@ class Salary(models.Model):
     )
 
     class Meta:
-        db_table='salaries'
-        ordering = ['id']
+        db_table="salaries"
+        ordering = ["id"]
         constraints = [
             models.CheckConstraint(
                 condition=models.Q(salary__gte=0),
-                name='salary_non_negative'
+                name="salary_non_negative"
             ),
         ]
 
     def __str__(self):
-        return f'{self.employee}: {self.salary} BYN'
+        return f"{self.employee}: {self.salary} BYN"
 
 
 class Department(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     class Meta:
-        db_table='departments'
-        ordering = ['id']
+        db_table="departments"
+        ordering = ["id"]
 
     def __str__(self):
-        return f'{self.name}'
+        return f"{self.name}"

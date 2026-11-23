@@ -18,7 +18,7 @@ from django.core.exceptions import ImproperlyConfigured
 def get_env(name, default=None):
     value = os.environ.get(name, default)
     if value is None:
-        raise ImproperlyConfigured(f'The environment variable {name} is not set')
+        raise ImproperlyConfigured(f"The environment variable {name} is not set")
     return value
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,10 +29,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env('DJANGO_SECRET_KEY')
+SECRET_KEY = get_env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_env('DJANGO_DEBUG', 'False').lower().strip() == 'true'
+DEBUG = get_env("DJANGO_DEBUG", "False").lower().strip() == "true"
 
 ALLOWED_HOSTS = []
 
@@ -40,13 +40,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'employees',
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "employees",
 ]
 
 MIDDLEWARE = [
@@ -83,13 +83,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': get_env('DB_NAME'),
-        'USER': get_env('DB_USER'),
-        'PASSWORD': get_env('DB_PASSWORD'),
-        'HOST': get_env('DB_HOST', '127.0.0.1'),
-        'PORT': get_env('DB_PORT', '5432'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": get_env("DB_NAME"),
+        "USER": get_env("DB_USER"),
+        "PASSWORD": get_env("DB_PASSWORD"),
+        "HOST": get_env("DB_HOST", "127.0.0.1"),
+        "PORT": get_env("DB_PORT", "5432"),
     }
 }
 
@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Minsk'
+TIME_ZONE = "Europe/Minsk"
 
 USE_I18N = True
 
@@ -143,6 +143,6 @@ MAILERS = {
 # Rest Framework
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'employees.pagination.CustomPagination',
-    'PAGE_SIZE': 100
+    "DEFAULT_PAGINATION_CLASS": "employees.pagination.CustomPagination",
+    "PAGE_SIZE": 100
 }
