@@ -12,18 +12,22 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 from django.core.exceptions import ImproperlyConfigured
-
-def get_env(name, default=None):
-    value = os.environ.get(name, default)
-    if value is None:
-        raise ImproperlyConfigured(f"The environment variable {name} is not set")
-    return value
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+dotenv_path = BASE_DIR / ".env"
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path)
+
+def get_env(name, default=None):
+    value = os.environ.get(name, default)
+    if value is None or not value.strip():
+        raise ImproperlyConfigured(f"The environment variable {name} is not set")
+    return value
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
