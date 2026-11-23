@@ -9,7 +9,8 @@ class Employee(models.Model):
     second_name = models.CharField(max_length=100, validators=[validate_not_only_digits, validate_has_letter])
     age = models.PositiveSmallIntegerField(validators=[MinValueValidator(MIN_AGE)])
     departments = models.ManyToManyField(
-        'Department', blank=True
+        'Department',
+        blank=True,
     )
     create_date = models.DateTimeField(auto_now_add=True)
 
